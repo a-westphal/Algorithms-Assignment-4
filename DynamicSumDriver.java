@@ -25,7 +25,7 @@ public class DynamicSumDriver{
 
         System.out.println(dSum.isSum    (testArr, 14));
         System.out.println(dSum.isSumMem (testArr, 14));
-        System.out.println(dSum.getSubset(testArr, 14));
+        // System.out.println(dSum.getSubset(testArr, 14));
 
     }//main
 
