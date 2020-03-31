@@ -74,6 +74,7 @@ public class DynamicSum{
 			results[i][arr[i]] = true;
 
 		return memRecursion(arr,results,arr.length-1,t);
+		
     }//isSumMem
 
 	private Boolean memRecursion(int[] arr,Boolean[][] results,int i,int j)
@@ -105,8 +106,68 @@ public class DynamicSum{
      */
     public int[] getSubset(int[] arr, int t)
 	{
-        //YOUR CODE HERE
+		Boolean[][] results = new Boolean[arr.length][t + 1];
+		
+		for(int i = 0;i < results.length;i++)
+			for(int j = 0;j < results[i].length;j++)
+				results[i][j] = null;
+			
+		for(int i = 0;i < arr.length;i++)
+			results[i][arr[i]] = true;
 
+		boolean success = memRecursion(arr,results,arr.length-1,t);
+
+		if(!success)
+			throw new RuntimeException("There is not a valid solution");
+		
+		else
+		{
+			Integer[] subset = new Integer[arr.length];
+			int subset_idx = 0;
+			
+			int i = results.length - 1;
+			int j = results[i].length - 1;
+			
+			while(i >= 0 && j >= 0)
+			{				
+				System.out.println("Testing element " + i + " with value " + arr[i] + " against new weight " + (j - arr[i]));
+				if((j - arr[i]) >= 0 && results[i][j-arr[i]] != null)
+				{
+					if(results[i][j-arr[i]] == true)
+					{
+						subset[subset_idx++] = arr[i];
+					
+						j -= arr[i];
+					}
+				}
+				
+				i--;
+			}
+			
+			for(int d = 0;d < results.length;d++)
+				System.out.println(subset[d]);
+			
+			// for(int i = 0;i < results.length;i++)
+			// {
+				// for(int j = 0;j < results[i].length;j++)
+				// {
+					// Boolean element = results[i][j];
+					
+					// if(element == null)
+						// System.out.print("n");
+					// else if(element == true)
+						// System.out.print("t");
+					// else if (element == false)
+						// System.out.print("f");
+					
+					// System.out.print(" ");
+				// }
+				
+				// System.out.println();
+			// }
+			
+		}
+		
         return null;
     }//getSubset
 
