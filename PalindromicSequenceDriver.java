@@ -27,3 +27,23 @@ public class DynamicSumDriver{
     }//main
 
 }//class
+
+/*
+		A A C G A A
+	A	1 x x x x x
+	A	x 1 x x x x
+	C	x x 1 x x x
+	G	x x x 1 x x
+	A	x x x x 1 x
+	A	x x x x x 1
+	
+		A A C G A A
+	A	1 2 2 2 3 4
+	A	2 1 x x x x
+	C	2 x 1 x x x
+	G	2 x x 1 x x
+	A	3 x x x 1 x
+	A	4 x x x x 1
+
+
+*/

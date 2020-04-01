@@ -4,8 +4,8 @@
  * 
  * Implements a dynamic programming solution to find the length of the longest palindromic subsequence.
  * 
- * @author YOUR NAME HERE
- * Due Date: xx/xx/xx
+ * @author Abby Westphal, Chase Rapp
+ * Due Date: 04/03/20
  */
 
 

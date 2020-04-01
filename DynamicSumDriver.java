@@ -21,7 +21,7 @@ public class DynamicSumDriver{
 		
         DynamicSum dSum = new DynamicSum();
 
-        int[] testArr = {10,10,10,10,10,10,10,10,10,10,10};
+        int[] testArr = {2,2,2,2,2,2,2,2,2,2,2,2,2,2,2};
 
         System.out.println(dSum.isSum    (testArr, 14));
         System.out.println(dSum.isSumMem (testArr, 14));

@@ -27,13 +27,17 @@ public class DynamicSum{
      */
     public boolean isSum(int[] arr, int t)
 	{
+		/*
+			RUNTIME: Theta(nt), where n is equal to the length of the input array. The program contains two nested for-loops, which each have one bound from 0->n and one from 0->t, and no other portion of the code runs longer than this.
+		*/
+		
 		boolean[][] results = new boolean[arr.length][t + 1];
 		
 		for(int i = 0;i < results.length;i++)
 			for(int j = 0;j < results[i].length;j++)
 				results[i][j] = false;
 			
-		for(int i = 0;i < arr.length;i++)
+		for(int i = 0;i < arr.length;i++)	// BASE CASE: the target value matches the size of the current element, therefore the target can be hit using the current element alone
 			results[i][arr[i]] = true;
 		
 		
@@ -64,13 +68,16 @@ public class DynamicSum{
      */
     public boolean isSumMem(int[] arr, int t) 
 	{
+		/*
+			TODO figure out runtime explanation
+		*/
 		Boolean[][] results = new Boolean[arr.length][t + 1];
 		
 		for(int i = 0;i < results.length;i++)
 			for(int j = 0;j < results[i].length;j++)
 				results[i][j] = null;
 			
-		for(int i = 0;i < arr.length;i++)
+		for(int i = 0;i < arr.length;i++)	// BASE CASE: the target value matches the size of the current element, therefore the target can be hit using the current element alone
 			results[i][arr[i]] = true;
 
 		return memRecursion(arr,results,arr.length-1,t);
@@ -106,6 +113,10 @@ public class DynamicSum{
      */
     public int[] getSubset(int[] arr, int t)
 	{
+		/*
+			RUNTIME: Theta(nt), when n is the size of the input array. We've already determined that filling the table is a Theta(nt) operation, and the loops in our recovery code are at worst Theta(n), so they do not affect the asymptotic runtime adversely.
+		*/
+		
 		Boolean[][] results = new Boolean[arr.length][t + 1];
 		Integer[] subset = new Integer[arr.length];
 		
@@ -121,6 +132,25 @@ public class DynamicSum{
 
 		boolean success = memRecursion(arr,results,arr.length-1,t);
 
+		// for(int it = 0;it < results.length;it++)
+		// {
+			// for(int jt = 0;jt < results[it].length;jt++)
+			// {
+				// Boolean element = results[it][jt];
+				
+				// if(element == null)
+					// System.out.print("n");
+				// else if(element == true)
+					// System.out.print("t");
+				// else if (element == false)
+					// System.out.print("f");
+				
+				// System.out.print(" ");
+			// }
+			
+			// System.out.println();
+		// }
+			
 		if(!success)
 			throw new RuntimeException("There is not a valid solution");
 		
@@ -162,31 +192,12 @@ public class DynamicSum{
 			// for(int d = 0;d < results.length;d++)
 				// System.out.println(subset[d]);
 			
-			// for(int it = 0;it < results.length;it++)
-			// {
-				// for(int jt = 0;jt < results[it].length;jt++)
-				// {
-					// Boolean element = results[it][jt];
-					
-					// if(element == null)
-						// System.out.print("n");
-					// else if(element == true)
-						// System.out.print("t");
-					// else if (element == false)
-						// System.out.print("f");
-					
-					// System.out.print(" ");
-				// }
-				
-				// System.out.println();
-			// }
-			
 		}
-		
+	
 		// System.out.println("final result:");
 		int count = 0;
 		
-		while(subset[count] != null)
+		while(count < subset.length && subset[count] != null)
 			count++;
 		
 		int[] final_result = new int[count];
