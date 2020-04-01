@@ -21,12 +21,14 @@ public class DynamicSumDriver{
 		
         DynamicSum dSum = new DynamicSum();
 
-        int[] testArr = {3,1,4,1,5,9,2,6};
+        int[] testArr = {10,10,10,10,10,10,10,10,10,10,10};
 
         System.out.println(dSum.isSum    (testArr, 14));
         System.out.println(dSum.isSumMem (testArr, 14));
         // System.out.println(dSum.getSubset(testArr, 14));
-dSum.getSubset(testArr, 14);
+		System.out.println(testArr);
+		
+dSum.getSubset(testArr, 30);
     }//main
 
 }//class

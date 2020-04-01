@@ -107,13 +107,17 @@ public class DynamicSum{
     public int[] getSubset(int[] arr, int t)
 	{
 		Boolean[][] results = new Boolean[arr.length][t + 1];
+		Integer[] subset = new Integer[arr.length];
 		
 		for(int i = 0;i < results.length;i++)
 			for(int j = 0;j < results[i].length;j++)
 				results[i][j] = null;
 			
 		for(int i = 0;i < arr.length;i++)
-			results[i][arr[i]] = true;
+		{
+			if(arr[i] < t)
+				results[i][arr[i]] = true;
+		}
 
 		boolean success = memRecursion(arr,results,arr.length-1,t);
 
@@ -122,7 +126,6 @@ public class DynamicSum{
 		
 		else
 		{
-			Integer[] subset = new Integer[arr.length];
 			int subset_idx = 0;
 			
 			int i = results.length - 1;
@@ -130,11 +133,23 @@ public class DynamicSum{
 			
 			while(i >= 0 && j >= 0)
 			{				
-				System.out.println("Testing element " + i + " with value " + arr[i] + " against new weight " + (j - arr[i]));
-				if((j - arr[i]) >= 0 && results[i][j-arr[i]] != null)
+				// System.out.println("Testing element " + i + " with value " + arr[i] + " against new weight " + (j - arr[i]));
+				
+				if((j - arr[i]) == 0)
 				{
-					if(results[i][j-arr[i]] == true)
+					// System.out.println("Using value: " + arr[i]);
+					subset[subset_idx++] = arr[i];
+				
+					j -= arr[i];
+				}
+				
+				else if((j-arr[i]) >= 0 && results[i-1][j-arr[i]] != null)
+				{
+					// System.out.println("First test passed");
+					
+					if(results[i-1][j-arr[i]] == true)
 					{
+						// System.out.println("Using value: " + arr[i]);
 						subset[subset_idx++] = arr[i];
 					
 						j -= arr[i];
@@ -144,14 +159,14 @@ public class DynamicSum{
 				i--;
 			}
 			
-			for(int d = 0;d < results.length;d++)
-				System.out.println(subset[d]);
+			// for(int d = 0;d < results.length;d++)
+				// System.out.println(subset[d]);
 			
-			// for(int i = 0;i < results.length;i++)
+			// for(int it = 0;it < results.length;it++)
 			// {
-				// for(int j = 0;j < results[i].length;j++)
+				// for(int jt = 0;jt < results[it].length;jt++)
 				// {
-					// Boolean element = results[i][j];
+					// Boolean element = results[it][jt];
 					
 					// if(element == null)
 						// System.out.print("n");
@@ -168,7 +183,21 @@ public class DynamicSum{
 			
 		}
 		
-        return null;
+		// System.out.println("final result:");
+		int count = 0;
+		
+		while(subset[count] != null)
+			count++;
+		
+		int[] final_result = new int[count];
+		
+		for(int i = 0;i < final_result.length;i++)
+			final_result[i] = subset[i];
+		
+		// for(int i = 0;i < final_result.length;i++)
+			// System.out.println(final_result[i]);
+		
+        return final_result;
     }//getSubset
 
 }//class
