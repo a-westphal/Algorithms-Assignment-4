@@ -15,13 +15,14 @@
 
 
 
-public class DynamicSumDriver{
+public class PalindromicSequenceDriver{
 
     public static void main(String[] args){
 
-        String x = "AACGAA";
+        String x = "AAACGAAA";
 
-        System.out.println(PalindromicSequence.getLongestPalindrome(x));
+        PalindromicSequence.getLongestPalindrome(x);
+        //System.out.println(PalindromicSequence.getLongestPalindrome(x));
         System.out.println(PalindromicSequence.getLengthLongestPalindrome(x));
 
     }//main
