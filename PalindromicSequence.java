@@ -19,7 +19,7 @@ public class PalindromicSequence{
      * @return the length of the longest palindromic subsequence, or 0 if there is none.
      */
     public static int getLengthLongestPalindrome(String x){
-        //YOUR CODE HERE
+
         int [] [] table = new int [x.length()][x.length()];
 
         //initialize the table to be full of 0's with 1's on the diagonal
@@ -36,9 +36,9 @@ public class PalindromicSequence{
                     table[i][j] = 0;
                 }
 
-                System.out.print(table[i][j] + " ");
+                // System.out.print(table[i][j] + " ");
             }
-            System.out.println("");
+            // System.out.println("");
         }
 
         /*  i starts at 2 because we use it to compare groups of two characters within the string
@@ -63,7 +63,7 @@ public class PalindromicSequence{
                 }
                 
                 /*  if it isn't the first pass of i, add two to the right diagonal value */ 
-                else if(x.charAt(j) == x.charAt(h))
+                else if(x.charAt(j) == x.charAt(hold))
                 {
                     table[j][hold] = table[j+1][hold-1] + 2;
                 }
